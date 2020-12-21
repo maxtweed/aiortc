@@ -43,6 +43,7 @@ async def offer(request):
         player = MediaPlayer(args.play_from)
     else:
         options = {"framerate": "30", "video_size": "640x480"}
+        print(f"platform: {platform.system()} ")
         if platform.system() == "Darwin":
             player = MediaPlayer("default:none", format="avfoundation", options=options)
         else:
@@ -50,6 +51,7 @@ async def offer(request):
 
     await pc.setRemoteDescription(offer)
     for t in pc.getTransceivers():
+        print(f"transceiver {t}  {t.kind}")
         if t.kind == "audio" and player.audio:
             pc.addTrack(player.audio)
         elif t.kind == "video" and player.video:
@@ -57,11 +59,12 @@ async def offer(request):
 
     answer = await pc.createAnswer()
     await pc.setLocalDescription(answer)
-
+    print(f"SDP: {pc.localDescription.sdp}")
     return web.Response(
         content_type="application/json",
         text=json.dumps(
             {"sdp": pc.localDescription.sdp, "type": pc.localDescription.type}
+
         ),
     )
 
