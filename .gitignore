@@ -9,3 +9,7 @@
 /build
 /dist
 /docs/_build
+examples/server_dl/dataset
+/output
+.DS_Store
+examples/webcam/testme.mp4
