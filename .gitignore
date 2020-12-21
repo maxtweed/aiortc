@@ -1,6 +1,7 @@
 *.egg-info
 *.pyc
 *.so
+*.pickle
 .coverage
 .eggs
 .idea
@@ -13,3 +14,7 @@ examples/server_dl/dataset
 /output
 .DS_Store
 examples/webcam/testme.mp4
+examples/adapter-latest.js
+examples/server_dl/output/embeddings.pickle
+examples/deep-learning-face-detection/res10_300x300_ssd_iter_140000.caffemodel
+out.txt
