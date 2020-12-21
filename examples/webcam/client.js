@@ -22,14 +22,11 @@ function negotiate() {
         });
     }).then(function() {
         var offer = pc.localDescription;
+
+        // our webcam is local, we just fetch from '/offer' url
         return fetch('/offer', {
-            body: JSON.stringify({
-                sdp: offer.sdp,
-                type: offer.type,
-            }),
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            body: JSON.stringify({ sdp: offer.sdp, type: offer.type, }),
+            headers: { 'Content-Type': 'application/json' },
             method: 'POST'
         });
     }).then(function(response) {
