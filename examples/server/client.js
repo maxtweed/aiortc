@@ -166,7 +166,8 @@ function start() {
         if (constraints.video) {
             document.getElementById('media').style.display = 'block';
         }
-        navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(stream) {
             stream.getTracks().forEach(function(track) {
                 pc.addTrack(track, stream);
             });
